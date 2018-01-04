@@ -1,10 +1,10 @@
 # coding: utf-8
-set :application, 'zebra'
+set :application, 'xerp'
 set :deploy_user, 'deploy'
 
 # setup repo details
 set :scm, :git
-set :repo_url, 'git@github.com:TCnet/zebra.git'
+set :repo_url, 'git@github.com:TCnet/xerp.git'
 
 # setup rbenv.
 set :rbenv_type, :system
