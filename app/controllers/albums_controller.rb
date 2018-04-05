@@ -363,16 +363,16 @@ class AlbumsController < ApplicationController
         
         #set price
         if(price_arry.length>0)
-          sheet1[num,cloum_s_price] = price_arry[0].to_i
+          sheet1[num,cloum_s_price] = price_arry[0].to_f.round(2)
           
           if(price_arry.length==1)
-            sheet1[num,cloum_list_price] = price_arry[0].to_i
-            sheet1[num,cloum_sale_price] = price_arry[0].to_i
+            sheet1[num,cloum_list_price] = price_arry[0].to_f.round(2)
+            sheet1[num,cloum_sale_price] = price_arry[0].to_f.round(2)
           elsif(price_arry.length==2)          
-            sheet1[num,cloum_list_price] = price_arry[1].to_i
+            sheet1[num,cloum_list_price] = price_arry[1].to_f.round(2)
           elsif(price_arry.length>2)         
-            sheet1[num,cloum_list_price] = price_arry[1].to_i
-            sheet1[num,cloum_sale_price] = price_arry[2].to_i
+            sheet1[num,cloum_list_price] = price_arry[1].to_f.round(2)
+            sheet1[num,cloum_sale_price] = price_arry[2].to_f.round(2)
           end
                
         end

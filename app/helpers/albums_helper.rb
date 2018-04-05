@@ -281,7 +281,7 @@ module AlbumsHelper
       
     elsif(stock.empty?)
       return Array.new(codelength, Array.new(csizelength, 0))
-    elsif(stock.split(' ').length>0)
+    elsif(stock.split(' ').length>1)
       s= stock.split(' ')
       if(s.length<csizelength)
         csizelength-s.length.times do |f|
