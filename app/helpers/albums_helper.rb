@@ -261,22 +261,27 @@ module AlbumsHelper
 
   def stock_two_arry(codelength,csizelength,stock)
     
-    ob = stock.tr("\n","|").split('|')
+    ob = stock.tr("\n","|").split('|').map{|x| x.strip }
     if(ob.length>1)
       
     
       result = Array.new
-      ob.each_with_index do |f,n|
-  
-        mob= f.split(' ')
-        if(mob.length>1)        
-          result[n]= f.split(' ').map{|item| item.to_i}
-         
+
+      codelength.times do |n|
+        if(ob.length>=codelength)
+          mob= ob[n].split(' ')
+          result[n]= ob[n].split(' ').map{|item| item.to_i}
         else
-          result[n]=Array.new(csizelength,f.to_in)
+          if(ob.length>=n+1)
+            result[n] = ob[n].split(' ').map{|item| item.to_i}
+          else
+            result[n]=Array.new(csizelength,0)
+          end
         end
-      
       end
+      
+    
+      
       return result
       
     elsif(stock.empty?)
