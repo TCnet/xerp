@@ -106,6 +106,7 @@ class AlbumsController < ApplicationController
       photos = photos.where("name <>?","size.jpg")
 
     end
+    photos = photos.where("name <>?","SIZE.jpg")
     path= File.join Rails.root, 'public/'
 
    
