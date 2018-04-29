@@ -5,7 +5,7 @@ module ExportExcel
 
   Spreadsheet.client_encoding = "UTF-8"  
   
-  def outamazon(albums,etemplate,path,user)
+  def outamazon(albums,etemplate,path,user,outfilename)
    
 
     book = Spreadsheet::Workbook.new
@@ -101,7 +101,7 @@ module ExportExcel
           code.each_with_index do |n,index|
             csize.each_with_index do |m,j|
               rownum = index*skunum+j+2
-              sheet1.row(rownum+c_cloum).height = rowheight
+              #sheet1.row(rownum+c_cloum).height = rowheight
               sheet1[rownum+c_cloum,t_num] = album.name.upcase+n.upcase+"-"+m
               
             end
@@ -181,6 +181,8 @@ module ExportExcel
         #end points
         
         if(t_ob=="external_product_id_type")
+          sheet1.row(1+c_cloum).height = rowheight
+          sheet1.row(num+c_cloum).height = rowheight
           sheet1[1+c_cloum,t_num] = "UPC"  
           sheet1[num+c_cloum,t_num] = "UPC"     
         end
@@ -335,7 +337,7 @@ module ExportExcel
         
         code.each_with_index do |f,n|
           csize.each_with_index do |e,m|
-            num = n*csize.length+m+titlecloum
+            num = n*csize.length+m+1
             sn = (num-1)*5+5
 
             sheet1[num+1+c_cloum,t_num] = key_array[sn].join(',')
@@ -359,7 +361,7 @@ module ExportExcel
 
       code.each_with_index do |f,n|
         csize.each_with_index do |e,m|
-          num = n*csize.length+m+titlecloum
+          num = n*csize.length+m+1
           
           #sheet1[num+1,cloum_keywords] = key_array[0].join(',')[0,1000]
           sheet1[num+1+c_cloum,t_num+1] = key_array[0].join(',')[0,1000]
@@ -448,7 +450,7 @@ module ExportExcel
 
 
     #create excel
-    filename = etemplate.name+Time.now.to_s+".xls";
+    filename = outfilename+".xls";
 
     file_path=path+"uploads/export/"+filename
 
@@ -463,5 +465,7 @@ module ExportExcel
     end
     
   end
+
+
   
 end
